@@ -6,4 +6,5 @@ Prace nad aplikacją trwają.
 
 Preview aplikacji:
 
-![Zrzut ekranu aplikacji_1](AI_chat.png)
+![Zrzut ekranu aplikacji_1](AI_chat_(screenshot).png)
+
