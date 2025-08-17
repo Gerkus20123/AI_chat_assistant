@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Konfiguracja serwera backendowego
+  backend-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=mysql://German:1Azgt3f0@db:3306/AI_assistant_web
+    depends_on:
+      - db
+
+  # Konfiguracja bazy danych MySQL
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: AI_assistant_web
+      MYSQL_USER: German
+      MYSQL_PASSWORD: 1Azhgt3f0
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # Konfiguracja phpMyAdmin do zarządzania bazą danych
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - db
+
+volumes:
+  db_data:
